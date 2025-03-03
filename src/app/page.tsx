@@ -1,5 +1,7 @@
-export default function Home() {
-  return (
-    <h1>Musify</h1>
-  );
+import NewReleases from "@/app/new-releases";
+
+export default async function Home() {
+  return <>
+    <NewReleases />
+  </>;
 }
