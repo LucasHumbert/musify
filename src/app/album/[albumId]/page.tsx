@@ -37,5 +37,15 @@ export default async function AlbumPage({
         </div>
 
         <p className='text-center'>{data.release_date}</p>
+
+        <div className='mt-4 w-1/2 m-auto'>
+            {data.tracks.items.map((track) => (
+                <div key={track.id}>
+                    {track.name}
+                    {track.duration}
+                </div>
+            ))}
+
+        </div>
     </div>
 }

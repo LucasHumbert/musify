@@ -4,7 +4,9 @@ export type Album = {
     images: { url: string }[],
     name: string,
     release_date: string,
-    tracks: Track[]
+    tracks: {
+        items: Track[]
+    }
 }
 
 export type Artist = {
