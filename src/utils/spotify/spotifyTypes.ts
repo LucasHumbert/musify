@@ -8,7 +8,8 @@ export type Album = {
         items: Track[]
     },
     total_tracks: number,
-    label: string
+    label: string,
+    external_urls: External_urls
 }
 
 export type Artist = {
@@ -17,13 +18,18 @@ export type Artist = {
     name: string
 }
 
-type Track = {
+export type Track = {
     id: string,
     artists: Artist[],
     name: string
     duration_ms: number,
     explicit: boolean,
-    track_number: number
+    track_number: number,
+    external_urls: External_urls
+}
+
+type External_urls = {
+    spotify: string
 }
 
 export type SpotifyError = {
