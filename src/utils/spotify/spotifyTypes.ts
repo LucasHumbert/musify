@@ -19,7 +19,7 @@ type Track = {
     id: string,
     artists: Artist[],
     name: string
-    duration: number
+    duration_ms: number
 }
 
 export type SpotifyError = {

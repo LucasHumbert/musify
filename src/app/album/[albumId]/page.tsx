@@ -2,6 +2,7 @@ import {fetchSpotifyToken} from "@/utils/spotify/spotifyUtils";
 import {Album, SpotifyError} from "@/utils/spotify/spotifyTypes";
 import AlbumCover from "@/components/album/album-cover";
 import DisplayArtists from "@/components/display-artists";
+import { Duration } from "luxon";
 
 export default async function AlbumPage({
     params,
@@ -38,11 +39,14 @@ export default async function AlbumPage({
 
         <p className='text-center'>{data.release_date}</p>
 
-        <div className='mt-4 w-1/2 m-auto'>
+        <div className='mt-4 w-1/3 m-auto'>
             {data.tracks.items.map((track) => (
-                <div key={track.id}>
-                    {track.name}
-                    {track.duration}
+                <div key={track.id} className='flex justify-between items-center my-2 px-2 py-1 rounded-sm cursor-pointer hover:bg-gray-200'>
+                    <div>
+                        <p>{track.name}</p>
+                        <div className='flex'><DisplayArtists artists={track.artists} /></div>
+                    </div>
+                    <p>{ Duration.fromObject({ milliseconds: track.duration_ms }).toFormat('m:ss') }</p>
                 </div>
             ))}
 
