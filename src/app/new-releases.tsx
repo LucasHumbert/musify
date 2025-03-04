@@ -1,6 +1,6 @@
 import { fetchSpotifyToken} from "@/utils/spotify/spotifyUtils";
-import AlbumCover from "@/components/album-cover";
 import {Album} from "@/utils/spotify/spotifyTypes";
+import AlbumPreview from "@/components/album/album-preview";
 
 export default async function NewReleases() {
     const token = await fetchSpotifyToken();
@@ -17,7 +17,7 @@ export default async function NewReleases() {
         <div className='flex overflow-x-scroll space-x-4'>
             {albums.items.map((album: Album) => (
                 <div key={album.id} className='min-w-75'>
-                    <AlbumCover album={album} />
+                    <AlbumPreview album={album} />
                 </div>
             ))}
         </div>

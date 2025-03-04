@@ -7,7 +7,7 @@ export type Album = {
     tracks: Track[]
 }
 
-type Artist = {
+export type Artist = {
     id: string,
     href: string,
     name: string

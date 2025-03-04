@@ -1,7 +1,7 @@
 import {fetchSpotifyToken} from "@/utils/spotify/spotifyUtils";
 import {Album, SpotifyError} from "@/utils/spotify/spotifyTypes";
-import Image from "next/image";
-import {Fragment} from "react";
+import AlbumCover from "@/components/album/album-cover";
+import DisplayArtists from "@/components/display-artists";
 
 export default async function AlbumPage({
     params,
@@ -26,24 +26,14 @@ export default async function AlbumPage({
     console.log(data)
 
     return <div className='p-4'>
-        <Image
-            src={data.images[0].url}
-            width={500}
-            height={500}
-            alt={data.name}
-            priority={true}
-            className='m-auto'
-        />
+        <div className='w-fit m-auto'>
+            <AlbumCover album={data} size={500} />
+        </div>
 
         <h1 className='text-3xl text-center'>{data.name}</h1>
 
         <div className='flex justify-center'>
-            {data.artists.map((artist, index) => {
-                return <Fragment key={artist.id}>
-                    <p className='w-fit'>{artist.name}</p>
-                    {index !== data.artists.length - 1 && <span className='mr-1'>,</span>}
-                </Fragment>
-            })}
+            <DisplayArtists artists={data.artists} />
         </div>
 
         <p className='text-center'>{data.release_date}</p>
