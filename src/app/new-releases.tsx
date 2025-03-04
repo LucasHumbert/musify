@@ -1,5 +1,6 @@
-import {Album, fetchSpotifyToken} from "@/utils/spotifyUtils";
+import { fetchSpotifyToken} from "@/utils/spotify/spotifyUtils";
 import AlbumCover from "@/components/album-cover";
+import {Album} from "@/utils/spotify/spotifyTypes";
 
 export default async function NewReleases() {
     const token = await fetchSpotifyToken();
@@ -10,7 +11,6 @@ export default async function NewReleases() {
         }
     });
     const { albums } = await data.json()
-    console.log(albums)
 
     return <section className='m-4'>
         <h1 className='text-2xl mb-2'>New releases</h1>

@@ -10,17 +10,3 @@ export async function fetchSpotifyToken() {
     const data = await res.json();
     return data.access_token;
 }
-
-export type Album = {
-    id: string,
-    artists: Artist[],
-    images: { url: string }[],
-    name: string,
-    release_date: string
-}
-
-type Artist = {
-    id: string,
-    href: string,
-    name: string
-}
