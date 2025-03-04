@@ -6,7 +6,9 @@ export type Album = {
     release_date: string,
     tracks: {
         items: Track[]
-    }
+    },
+    total_tracks: number,
+    label: string
 }
 
 export type Artist = {
@@ -19,7 +21,9 @@ type Track = {
     id: string,
     artists: Artist[],
     name: string
-    duration_ms: number
+    duration_ms: number,
+    explicit: boolean,
+    track_number: number
 }
 
 export type SpotifyError = {
