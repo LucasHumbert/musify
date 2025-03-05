@@ -9,7 +9,8 @@ export type Album = {
     },
     total_tracks: number,
     label: string,
-    external_urls: External_urls
+    external_urls: External_urls,
+    album_type: string
 }
 
 export type Artist = {

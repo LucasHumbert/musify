@@ -14,7 +14,9 @@ export default function AlbumTrack({ track, trackNumber }: { track: Track, track
                 <p>{track.name}</p>
                 { track.explicit && <div className='text-sm bg-gray-300 w-fit h-fit ml-1 px-1 rounded-sm' title='Explicit'>E</div> }
             </div>
-            <div className='flex'><DisplayArtistsNames artists={track.artists} /></div>
+            <div className='flex w-full truncate'>
+                <DisplayArtistsNames artists={track.artists} />
+            </div>
         </div>
         <p>{ Duration.fromObject({ milliseconds: track.duration_ms }).toFormat('m:ss') }</p>
         <Link href={track.external_urls.spotify} target='_blank' className='ml-3'>

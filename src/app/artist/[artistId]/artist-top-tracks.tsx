@@ -17,8 +17,6 @@ export default async function ArtistTopTracks({ artistId }: { artistId: number }
         return <h1 className='text-red-500 text-center mt-4 text-4xl'>{data.error.message}</h1>
     }
 
-    console.log(data.tracks)
-
     return <div>
         {data.tracks
             .slice(0, 5)

@@ -27,12 +27,12 @@ export default async function AlbumPage({
         return <h1 className='text-red-500 text-center mt-4 text-4xl'>{album.error.message}</h1>
     }
 
-    return <div className='w-1/3 m-auto py-11'>
+    return <div className='py-11'>
         <div className='w-fit m-auto'>
             <AlbumCover album={album} size={400} />
         </div>
 
-        <div className='flex justify-center items-center'>
+        <div className='w-1/2 m-auto flex justify-center items-center'>
             <h1 className='text-5xl text-center leading-snug'>{album.name}</h1>
             <Link href={album.external_urls.spotify} target='_blank' className='ml-1'>
                 <ArrowTopRightOnSquareIcon className="size-6" title='Open in Spotify' />
@@ -45,7 +45,7 @@ export default async function AlbumPage({
 
         <p className='text-center'>{DateTime.fromFormat(album.release_date, 'yyyy-MM-dd').toLocaleString()}</p>
 
-        <div className='mt-4'>
+        <div className='w-1/3 m-auto mt-4'>
             <h2 className='text-2xl mb-4'>{ album.total_tracks } tracks</h2>
             {album.tracks.items
                 .slice()
@@ -55,7 +55,7 @@ export default async function AlbumPage({
                 ))}
         </div>
 
-        <div className='mt-8 pl-2'>
+        <div className='mt-8 pl-2 w-1/3 m-auto'>
             @{ DateTime.fromFormat(album.release_date, 'yyyy-MM-dd').year } {album.label}
         </div>
     </div>
