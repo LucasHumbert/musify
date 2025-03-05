@@ -1,7 +1,7 @@
 import {Album} from "@/utils/spotify/spotifyTypes";
 import Link from "next/link";
 import AlbumCover from "@/components/album/album-cover";
-import DisplayArtistsNames from "@/components/display-artists-names";
+import DisplayArtistsNames from "@/components/artist/display-artists-names";
 
 export default function AlbumPreview({ album } : { album: Album }) {
     return <div>

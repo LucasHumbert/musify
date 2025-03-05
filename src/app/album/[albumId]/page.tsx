@@ -1,7 +1,7 @@
 import {fetchSpotifyToken} from "@/utils/spotify/spotifyUtils";
 import {Album, SpotifyError} from "@/utils/spotify/spotifyTypes";
 import AlbumCover from "@/components/album/album-cover";
-import DisplayArtistsNames from "@/components/display-artists-names";
+import DisplayArtistsNames from "@/components/artist/display-artists-names";
 import {DateTime} from "luxon";
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/solid'
 import Link from "next/link";
@@ -33,7 +33,7 @@ export default async function AlbumPage({
         </div>
 
         <div className='flex justify-center items-center'>
-            <h1 className='text-5xl text-center leading-none'>{album.name}</h1>
+            <h1 className='text-5xl text-center leading-snug'>{album.name}</h1>
             <Link href={album.external_urls.spotify} target='_blank' className='ml-1'>
                 <ArrowTopRightOnSquareIcon className="size-6" title='Open in Spotify' />
             </Link>

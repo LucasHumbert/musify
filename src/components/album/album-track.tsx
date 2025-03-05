@@ -1,13 +1,13 @@
-import DisplayArtistsNames from "@/components/display-artists-names";
+import DisplayArtistsNames from "@/components/artist/display-artists-names";
 import {Duration} from "luxon";
 import Link from "next/link";
 import {ArrowTopRightOnSquareIcon} from "@heroicons/react/24/solid";
 import {Track} from "@/utils/spotify/spotifyTypes";
 
-export default function AlbumTrack({ track }: { track: Track }) {
+export default function AlbumTrack({ track, trackNumber }: { track: Track, trackNumber?: number }) {
     return <div key={track.id} className='flex justify-between items-center my-2 px-2 py-1 rounded-sm cursor-pointer hover:bg-gray-200'>
         <div className='mr-3 ml-1 w-5 text-center'>
-            {track.track_number}
+            {trackNumber ?? track.track_number}
         </div>
         <div className='grow'>
             <div className='flex items-center'>
