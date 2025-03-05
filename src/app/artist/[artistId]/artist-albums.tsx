@@ -17,12 +17,10 @@ export default async function ArtistAlbums({ artistId }: { artistId: number }) {
         return <h1 className='text-red-500 text-center mt-4 text-4xl'>{data.error.message}</h1>
     }
 
-    console.log(data)
-
     return <div className='flex space-x-4 overflow-x-auto'>
         {data.items
             .map((album) => (
-                <AlbumPreview album={album} key={album.id} />
+                <AlbumPreview album={album} displayReleaseDate={true} key={album.id} />
             ))
         }
     </div>

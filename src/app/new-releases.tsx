@@ -27,7 +27,7 @@ export default async function NewReleases() {
         <div className='flex overflow-x-scroll space-x-4'>
             {data.albums.items.map((album: Album) => (
                 <div key={album.id} className='min-w-75'>
-                    <AlbumPreview album={album} />
+                    <AlbumPreview album={album} displayArtistName={true} />
                 </div>
             ))}
         </div>
