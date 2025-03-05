@@ -57,7 +57,7 @@ export default async function ArtistPage({ params }: { params: Promise<{ artistI
                             <ArrowTopRightOnSquareIcon className="size-6" title='Open in Spotify' />
                         </Link>
                     </div>
-                    <p className='text-2xl'>{ artistProfile.followers.total } followers</p>
+                    <p className='text-2xl'>{ artistProfile.followers.total.toLocaleString("en-GB") } followers</p>
 
                     {artistProfile.genres.length > 0 &&
                       <div className='flex mt-2 justify-center'>
@@ -76,7 +76,6 @@ export default async function ArtistPage({ params }: { params: Promise<{ artistI
         </div>
 
         <Suspense fallback={<div className='flex justify-center items-center'><LoadingSpinner /></div>}>
-            <h2 className='text-2xl mb-4'>Albums</h2>
             <ArtistAlbums artistId={artistId} />
         </Suspense>
 

@@ -4,13 +4,23 @@ import AlbumCover from "@/components/album/album-cover";
 import DisplayArtistsNames from "@/components/artist/display-artists-names";
 import {DateTime} from "luxon";
 
-export default function AlbumPreview({ album, displayArtistName = false, displayReleaseDate = false } : { album: Album, displayArtistName?: boolean, displayReleaseDate?: boolean}) {
+export default function AlbumPreview({
+    album,
+    displayArtistName = false,
+    displayReleaseDate = false,
+    fullSizeCover = false
+} : {
+    album: Album,
+    displayArtistName?: boolean,
+    displayReleaseDate?: boolean,
+    fullSizeCover?: boolean
+}) {
     const releaseDate = DateTime.fromFormat(album.release_date, 'yyyy-MM-dd').toLocaleString()
     const releaseYear = DateTime.fromFormat(album.release_date, 'yyyy-MM-dd').year
 
-    return <div className='w-[300px] min-w-[300px]'>
+    return <div>
         <Link href={`/album/${album.id}`}>
-            <AlbumCover album={album} size={300} />
+            <AlbumCover album={album} size={300} full={fullSizeCover} />
             <p className='w-full truncate' title={album.name}>{ album.name }</p>
             { displayReleaseDate && <p className='w-full truncate' title={releaseDate}>{ releaseYear }</p> }
         </Link>
