@@ -1,7 +1,7 @@
 export type Album = {
     id: string,
     artists: Artist[],
-    images: { url: string }[],
+    images: SpotifyImage[],
     name: string,
     release_date: string,
     tracks: {
@@ -30,6 +30,23 @@ export type Track = {
 
 type External_urls = {
     spotify: string
+}
+
+export type ArtistProfile = {
+    id: number,
+    name: string,
+    followers: {
+        total: number
+    },
+    genres: string[],
+    images: SpotifyImage[],
+    external_urls: External_urls
+}
+
+type SpotifyImage = {
+    url: string
+    width: number,
+    height: number
 }
 
 export type SpotifyError = {

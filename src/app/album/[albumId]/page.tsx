@@ -1,7 +1,7 @@
 import {fetchSpotifyToken} from "@/utils/spotify/spotifyUtils";
 import {Album, SpotifyError} from "@/utils/spotify/spotifyTypes";
 import AlbumCover from "@/components/album/album-cover";
-import DisplayArtists from "@/components/display-artists";
+import DisplayArtistsNames from "@/components/display-artists-names";
 import {DateTime} from "luxon";
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/solid'
 import Link from "next/link";
@@ -21,33 +21,33 @@ export default async function AlbumPage({
         }
     });
 
-    const data: Album | SpotifyError = await res.json()
+    const album: Album | SpotifyError = await res.json()
 
-    if ('error' in data) {
-        return <h1 className='text-red-500 text-center mt-4 text-4xl'>{data.error.message}</h1>
+    if ('error' in album) {
+        return <h1 className='text-red-500 text-center mt-4 text-4xl'>{album.error.message}</h1>
     }
 
     return <div className='w-1/3 m-auto py-11'>
         <div className='w-fit m-auto'>
-            <AlbumCover album={data} size={500} />
+            <AlbumCover album={album} size={400} />
         </div>
 
         <div className='flex justify-center items-center'>
-            <h1 className='text-5xl text-center leading-none'>{data.name}</h1>
-            <Link href={data.external_urls.spotify} target='_blank' className='ml-1'>
+            <h1 className='text-5xl text-center leading-none'>{album.name}</h1>
+            <Link href={album.external_urls.spotify} target='_blank' className='ml-1'>
                 <ArrowTopRightOnSquareIcon className="size-6" title='Open in Spotify' />
             </Link>
         </div>
 
         <div className='flex justify-center text-xl'>
-            <DisplayArtists artists={data.artists} />
+            <DisplayArtistsNames artists={album.artists} />
         </div>
 
-        <p className='text-center'>{DateTime.fromFormat(data.release_date, 'yyyy-MM-dd').toLocaleString()}</p>
+        <p className='text-center'>{DateTime.fromFormat(album.release_date, 'yyyy-MM-dd').toLocaleString()}</p>
 
         <div className='mt-4'>
-            <h2 className='text-2xl mb-4'>{ data.total_tracks } tracks</h2>
-            {data.tracks.items
+            <h2 className='text-2xl mb-4'>{ album.total_tracks } tracks</h2>
+            {album.tracks.items
                 .slice()
                 .sort((a, b) => a.track_number - b.track_number)
                 .map((track) => (
@@ -56,7 +56,7 @@ export default async function AlbumPage({
         </div>
 
         <div className='mt-8 pl-2'>
-            @{ DateTime.fromFormat(data.release_date, 'yyyy-MM-dd').year } {data.label}
+            @{ DateTime.fromFormat(album.release_date, 'yyyy-MM-dd').year } {album.label}
         </div>
     </div>
 }

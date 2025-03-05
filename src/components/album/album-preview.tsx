@@ -1,7 +1,7 @@
 import {Album} from "@/utils/spotify/spotifyTypes";
 import Link from "next/link";
 import AlbumCover from "@/components/album/album-cover";
-import DisplayArtists from "@/components/display-artists";
+import DisplayArtistsNames from "@/components/display-artists-names";
 
 export default function AlbumPreview({ album } : { album: Album }) {
     return <div>
@@ -10,7 +10,7 @@ export default function AlbumPreview({ album } : { album: Album }) {
             <p>{ album.name }</p>
         </Link>
         <div className='flex'>
-            <DisplayArtists artists={album.artists} />
+            <DisplayArtistsNames artists={album.artists} />
         </div>
     </div>
 }

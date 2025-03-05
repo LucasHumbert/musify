@@ -1,4 +1,4 @@
-import DisplayArtists from "@/components/display-artists";
+import DisplayArtistsNames from "@/components/display-artists-names";
 import {Duration} from "luxon";
 import Link from "next/link";
 import {ArrowTopRightOnSquareIcon} from "@heroicons/react/24/solid";
@@ -10,11 +10,11 @@ export default function AlbumTrack({ track }: { track: Track }) {
             {track.track_number}
         </div>
         <div className='grow'>
-            <div className='flex'>
+            <div className='flex items-center'>
                 <p>{track.name}</p>
-                { track.explicit && <div className='bg-gray-300 w-fit ml-1 px-1 rounded-sm' title='Explicit'>E</div> }
+                { track.explicit && <div className='text-sm bg-gray-300 w-fit h-fit ml-1 px-1 rounded-sm' title='Explicit'>E</div> }
             </div>
-            <div className='flex'><DisplayArtists artists={track.artists} /></div>
+            <div className='flex'><DisplayArtistsNames artists={track.artists} /></div>
         </div>
         <p>{ Duration.fromObject({ milliseconds: track.duration_ms }).toFormat('m:ss') }</p>
         <Link href={track.external_urls.spotify} target='_blank' className='ml-3'>
