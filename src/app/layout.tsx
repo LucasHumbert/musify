@@ -14,7 +14,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Musify",
+  title: {
+      default: "Musify",
+      template: "Musify | %s"
+  },
   description: "Music + Spotify = Musify",
 };
 

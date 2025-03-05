@@ -8,6 +8,24 @@ import ArtistTopTracks from "@/app/artist/[artistId]/artist-top-tracks";
 import {Suspense} from "react";
 import LoadingSpinner from "@/components/loading-spinner";
 import ArtistAlbums from "@/app/artist/[artistId]/artist-albums";
+import {Metadata} from "next";
+
+export async function generateMetadata({ params }: { params: Promise<{ artistId: string }> }): Promise<Metadata> {
+    const { artistId } = await params
+    const token = await fetchSpotifyToken();
+
+    const res = await fetch(`https://api.spotify.com/v1/artists/${artistId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+
+    const artistProfile: ArtistProfile | SpotifyError = await res.json()
+
+    if ("error" in artistProfile) {
+        return { title: "Artist not found" };
+    }
+
+    return { title: artistProfile.name };
+}
 
 export default async function ArtistPage({ params }: { params: Promise<{ artistId : number}> }) {
     const { artistId } = await params

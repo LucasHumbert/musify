@@ -6,6 +6,24 @@ import {DateTime} from "luxon";
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/solid'
 import Link from "next/link";
 import AlbumTrack from "@/components/album/album-track";
+import {Metadata} from "next";
+
+export async function generateMetadata({ params }: { params: Promise<{ albumId: string }> }): Promise<Metadata> {
+    const { albumId } = await params
+    const token = await fetchSpotifyToken();
+
+    const res = await fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+
+    const album: Album | SpotifyError = await res.json();
+
+    if ("error" in album) {
+        return { title: "Album not found" };
+    }
+
+    return { title: album.name };
+}
 
 export default async function AlbumPage({
     params,
