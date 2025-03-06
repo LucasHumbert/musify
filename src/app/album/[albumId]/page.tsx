@@ -50,7 +50,7 @@ export default async function AlbumPage({
             <AlbumCover album={album} size={400} />
         </div>
 
-        <div className='w-1/2 m-auto flex justify-center items-center'>
+        <div className='w-[95%] m-auto flex flex-col md:flex-row justify-center items-center'>
             <h1 className='text-5xl text-center leading-snug'>{album.name}</h1>
             <Link href={album.external_urls.spotify} target='_blank' className='ml-1'>
                 <ArrowTopRightOnSquareIcon className="size-6" title='Open in Spotify' />
@@ -63,7 +63,7 @@ export default async function AlbumPage({
 
         <p className='text-center'>{DateTime.fromFormat(album.release_date, 'yyyy-MM-dd').toLocaleString()}</p>
 
-        <div className='w-1/3 m-auto mt-4'>
+        <div className='w-[95%] sm:w-[75%] lg:w-1/2 2xl:w-1/3 m-auto mt-4'>
             <h2 className='text-2xl mb-4'>{ album.total_tracks } tracks</h2>
             {album.tracks.items
                 .slice()
@@ -71,10 +71,10 @@ export default async function AlbumPage({
                 .map((track) => (
                     <AlbumTrack track={track} key={track.id} />
                 ))}
-        </div>
 
-        <div className='mt-8 pl-2 w-1/3 m-auto'>
-            @{ DateTime.fromFormat(album.release_date, 'yyyy-MM-dd').year } {album.label}
+            <div className='mt-8'>
+                @{ DateTime.fromFormat(album.release_date, 'yyyy-MM-dd').year } {album.label}
+            </div>
         </div>
     </div>
 }

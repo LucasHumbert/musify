@@ -44,14 +44,14 @@ export default async function ArtistPage({ params }: { params: Promise<{ artistI
     }
 
     return <div className='w-full m-auto p-11'>
-        <div className='flex items-start'>
-            <div className='w-1/2'>
+        <div className='flex flex-col 2xl:flex-row gap-10 items-start'>
+            <div className='w-[98%] m-auto 2xl:w-1/2'>
                 <div className='w-fit m-auto'>
                     <ArtistPicture artist={artistProfile} size={400} />
                 </div>
 
                 <div className='text-center'>
-                    <div className='flex justify-center items-center'>
+                    <div className='flex flex-col justify-center items-center'>
                         <h1 className='text-7xl text-center leading-snug'>{artistProfile.name}</h1>
                         <Link href={artistProfile.external_urls.spotify} target='_blank' className='ml-1'>
                             <ArrowTopRightOnSquareIcon className="size-6" title='Open in Spotify' />
@@ -67,7 +67,7 @@ export default async function ArtistPage({ params }: { params: Promise<{ artistI
                 </div>
             </div>
 
-            <div className='w-1/3 h-auto'>
+            <div className='w-[98%] xl:w-1/2 m-auto h-auto'>
                 <Suspense fallback={<div className='flex justify-center items-center'><LoadingSpinner /></div>}>
                     <h2 className='text-2xl mb-4'>Top tracks</h2>
                     <ArtistTopTracks artistId={artistId} />
