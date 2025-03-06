@@ -1,28 +1,31 @@
 import {fetchSpotifyToken} from "@/utils/spotify/spotifyUtils";
-import {Album, SpotifyError} from "@/utils/spotify/spotifyTypes";
 import ArtistAlbumsClient from "@/app/artist/[artistId]/artist-albums-client";
+import {Album} from "@/utils/spotify/spotifyTypes";
 
-export default async function ArtistAlbums({ artistId }: { artistId: number }) {
+export default async function ArtistAlbums({ artistId }: { artistId: string }) {
     const token = await fetchSpotifyToken();
 
-    const res = await fetch(`https://api.spotify.com/v1/artists/${artistId}/albums?limit=50&include_groups=album,single`, {
-        headers: {
-            Authorization: 'Bearer ' + token
-        }
-    });
+    const fetchAlbumsByGroup = async (group: string) => {
+        const res = await fetch(`https://api.spotify.com/v1/artists/${artistId}/albums?limit=50&include_groups=${group}`, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        const data = await res.json();
+        return data.items || [];
+    };
 
-    const data: { items: Album[] } | SpotifyError = await res.json()
+    const [albums, singles, appearsOn] = await Promise.all([
+        fetchAlbumsByGroup("album"),
+        fetchAlbumsByGroup("single"),
+        fetchAlbumsByGroup("appears_on")
+    ]);
 
-    if ('error' in data) {
-        return <h1 className='text-red-500 text-center mt-4 text-4xl'>{data.error.message}</h1>
-    }
+    const sortByDate = (a: Album, b: Album) => b.release_date.localeCompare(a.release_date);
 
-    const content = {
-        albums: data.items.filter(album => album.album_type === "album"),
-        singles: data.items.filter(album => album.album_type === "single")
-    }
-
-    console.log(content.albums)
+    const content: { albums: Album[], singles: Album[], appears_on: Album[] } = {
+        albums: albums.sort(sortByDate),
+        singles: singles.sort(sortByDate),
+        appears_on: appearsOn.sort(sortByDate)
+    };
 
     return <ArtistAlbumsClient content={content} />
 }

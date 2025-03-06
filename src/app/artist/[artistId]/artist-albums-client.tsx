@@ -4,20 +4,19 @@ import { Album } from "@/utils/spotify/spotifyTypes";
 import AlbumPreview from "@/components/album/album-preview";
 import { useState, useMemo } from "react";
 
-export default function ArtistAlbumsClient({ content }: { content: { albums: Album[], singles: Album[] } }) {
-    let defaultCategory: "albums" | "singles" = "albums"
+export default function ArtistAlbumsClient({ content }: { content: { albums: Album[], singles: Album[], appears_on: Album[] } }) {
+    const defaultCategory: 'albums' | 'singles' | 'appears_on' =
+        content.albums.length ? 'albums' :
+            content.singles.length ? 'singles' :
+                'appears_on';
 
-    if (!content.albums.length) {
-        defaultCategory = "singles"
-    }
-
-    const [selectedCategory, setSelectedCategory] = useState<"albums" | "singles">(defaultCategory);
+    const [selectedCategory, setSelectedCategory] = useState<'albums' | 'singles' | 'appears_on'>(defaultCategory);
     const contentToDisplay = useMemo(() => content[selectedCategory], [selectedCategory, content]);
 
     return (
-        <section>
+        <section className='mt-12'>
             <div className="flex gap-4 mb-4">
-                {(["albums", "singles"] as const).map((category) => (
+                {(['albums', 'singles', 'appears_on'] as const).map((category) => (
                     <button
                         key={category}
                         onClick={() => setSelectedCategory(category)}

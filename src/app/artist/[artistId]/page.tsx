@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ artistId:
     return { title: artistProfile.name };
 }
 
-export default async function ArtistPage({ params }: { params: Promise<{ artistId : number}> }) {
+export default async function ArtistPage({ params }: { params: Promise<{ artistId : string}> }) {
     const { artistId } = await params
     const token = await fetchSpotifyToken();
 

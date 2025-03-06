@@ -14,7 +14,7 @@ export default function AlbumTrack({ track, trackNumber }: { track: Track, track
                 <p>{track.name}</p>
                 { track.explicit && <div className='text-sm bg-gray-300 w-fit h-fit ml-1 px-1 rounded-sm' title='Explicit'>E</div> }
             </div>
-            <div className='flex w-full truncate'>
+            <div className='flex w-full truncate flex-wrap'>
                 <DisplayArtistsNames artists={track.artists} />
             </div>
         </div>

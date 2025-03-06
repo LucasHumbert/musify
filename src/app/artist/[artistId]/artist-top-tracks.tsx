@@ -2,7 +2,7 @@ import {fetchSpotifyToken} from "@/utils/spotify/spotifyUtils";
 import { SpotifyError, Track} from "@/utils/spotify/spotifyTypes";
 import AlbumTrack from "@/components/album/album-track";
 
-export default async function ArtistTopTracks({ artistId }: { artistId: number }) {
+export default async function ArtistTopTracks({ artistId }: { artistId: string }) {
     const token = await fetchSpotifyToken();
 
     const res = await fetch(`https://api.spotify.com/v1/artists/${artistId}/top-tracks`, {
