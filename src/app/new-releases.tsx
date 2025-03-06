@@ -22,14 +22,11 @@ export default async function NewReleases() {
         return <h1 className="text-center">Aucune nouveauté trouvée.</h1>;
     }
 
-    return <section className='m-4'>
-        <h1 className='text-2xl mb-2'>New releases</h1>
-        <div className='flex overflow-x-scroll space-x-4 custom-scrollbar'>
-            {data.albums.items.map((album: Album) => (
-                <div key={album.id} className='min-w-75'>
-                    <AlbumPreview album={album} displayArtistName={true} />
-                </div>
-            ))}
-        </div>
-    </section>;
+    return <div className='flex overflow-x-scroll space-x-4 custom-scrollbar'>
+        {data.albums.items.map((album: Album) => (
+            <div key={album.id} className='min-w-75'>
+                <AlbumPreview album={album} displayArtistName={true} />
+            </div>
+        ))}
+    </div>
 }
