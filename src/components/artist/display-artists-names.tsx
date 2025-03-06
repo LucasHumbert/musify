@@ -6,7 +6,7 @@ export default function DisplayArtistsNames({ artists } : { artists: Artist[] })
     return <>
         {artists.map((artist, index) => {
             return <Fragment key={artist.id}>
-                <Link href={`/artist/${artist.id}`} className='w-fit'>{artist.name}</Link>
+                <Link href={`/artist/${artist.id}`} className='w-fit hover:underline'>{artist.name}</Link>
                 {index !== artists.length - 1 && <span className='mr-1'>,</span>}
             </Fragment>
         })}
