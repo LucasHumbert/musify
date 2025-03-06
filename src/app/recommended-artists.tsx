@@ -19,8 +19,6 @@ export default async function RecommendedArtists() {
 
     const data = await res.json();
 
-    console.log(data)
-
     return <section className='m-4 mt-12'>
         <h1 className='text-2xl mb-2'>Recommended artists</h1>
         <div className='flex overflow-x-scroll space-x-4 custom-scrollbar'>
