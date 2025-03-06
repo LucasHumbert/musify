@@ -15,8 +15,14 @@ export default function AlbumPreview({
     displayReleaseDate?: boolean,
     fullSizeCover?: boolean
 }) {
-    const releaseDate = DateTime.fromFormat(album.release_date, 'yyyy-MM-dd').toLocaleString()
-    const releaseYear = DateTime.fromFormat(album.release_date, 'yyyy-MM-dd').year
+    const format = {
+        year: 'yyyy',
+        month: 'yyyy-MM',
+        day: 'yyyy-MM-dd',
+    }[album.release_date_precision] || 'yyyy-MM-dd';
+
+    const releaseDate = DateTime.fromFormat(album.release_date, format).toLocaleString()
+    const releaseYear = DateTime.fromFormat(album.release_date, format).year
 
     return <div>
         <Link href={`/album/${album.id}`}>

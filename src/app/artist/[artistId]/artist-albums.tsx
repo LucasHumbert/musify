@@ -22,5 +22,7 @@ export default async function ArtistAlbums({ artistId }: { artistId: number }) {
         singles: data.items.filter(album => album.album_type === "single")
     }
 
+    console.log(content.albums)
+
     return <ArtistAlbumsClient content={content} />
 }

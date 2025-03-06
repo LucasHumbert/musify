@@ -4,6 +4,7 @@ export type Album = {
     images: SpotifyImage[],
     name: string,
     release_date: string,
+    release_date_precision: string,
     tracks: {
         items: Track[]
     },
