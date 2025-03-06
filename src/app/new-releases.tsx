@@ -24,7 +24,7 @@ export default async function NewReleases() {
 
     return <section className='m-4'>
         <h1 className='text-2xl mb-2'>New releases</h1>
-        <div className='flex overflow-x-scroll space-x-4'>
+        <div className='flex overflow-x-scroll space-x-4 custom-scrollbar'>
             {data.albums.items.map((album: Album) => (
                 <div key={album.id} className='min-w-75'>
                     <AlbumPreview album={album} displayArtistName={true} />
