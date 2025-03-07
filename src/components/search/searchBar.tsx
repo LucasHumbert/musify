@@ -45,10 +45,9 @@ export default function SearchBar() {
 
     const handleResultSelect = () => {
         setShowResults(false);
-        setSearchInputValue("");
     };
 
-    return (
+    return <>
         <div ref={searchContainerRef} className="relative w-[500px]">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                 <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -66,5 +65,5 @@ export default function SearchBar() {
 
             {(showResults && results) && <ShowResults results={results} onSelect={handleResultSelect} />}
         </div>
-    );
+    </>;
 }

@@ -3,6 +3,7 @@ import {Album, ArtistProfile, Track} from "@/utils/spotify/spotifyTypes";
 import Link from "next/link";
 import AlbumCover from "@/components/album/album-cover";
 import ArtistPicture from "@/components/artist/artist-picture";
+import DisplayArtistsNames from "@/components/artist/display-artists-names";
 
 export default function ResultElement({ title, item, onSelect, isClickable = false }: { title: string, item: Album | ArtistProfile | Track, onSelect: () => void, isClickable?: boolean }) {
     function isAlbum(item: Album | ArtistProfile | Track): item is Album {
@@ -18,11 +19,14 @@ export default function ResultElement({ title, item, onSelect, isClickable = fal
     }
 
     let picture = null;
+    let artists = null;
 
     if (isAlbum(item)) {
         picture = <AlbumCover image={item.images[0]} size={100} full />
+        artists = item.artists
     } else if (isTrack(item)) {
         picture = <AlbumCover image={item.album.images[0]} size={100} full />
+        artists = item.artists
     } else if (isArtist(item)) {
         picture = <ArtistPicture image={item.images[0]} size={100} full />
     }
@@ -32,9 +36,10 @@ export default function ResultElement({ title, item, onSelect, isClickable = fal
             <div className='w-[70px]'>
                 { picture }
             </div>
-            <p className='ml-4'>
-                {item.name}
-            </p>
+            <div className='ml-4'>
+                <p >{item.name}</p>
+                <p>{ artists && <DisplayArtistsNames artists={artists} clickable={false} /> }</p>
+            </div>
         </div>
     );
 
