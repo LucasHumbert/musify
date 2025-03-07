@@ -11,7 +11,8 @@ export type Album = {
     total_tracks: number,
     label: string,
     external_urls: External_urls,
-    album_type: string
+    album_type: string,
+    type: string
 }
 
 export type Artist = {
@@ -27,7 +28,8 @@ export type Track = {
     duration_ms: number,
     explicit: boolean,
     track_number: number,
-    external_urls: External_urls
+    external_urls: External_urls,
+    type: string
 }
 
 type External_urls = {
@@ -42,7 +44,8 @@ export type ArtistProfile = {
     },
     genres: string[],
     images: SpotifyImage[],
-    external_urls: External_urls
+    external_urls: External_urls,
+    type: string
 }
 
 type SpotifyImage = {
@@ -57,3 +60,15 @@ export type SpotifyError = {
         message: string;
     };
 };
+
+export type SearchResults = {
+    albums: {
+        items: Album[]
+    },
+    artists: {
+        items: ArtistProfile[]
+    },
+    tracks: {
+        items: Album[]
+    }
+}
