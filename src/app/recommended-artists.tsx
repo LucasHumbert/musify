@@ -21,7 +21,7 @@ export default async function RecommendedArtists() {
 
     return <div className='flex overflow-x-scroll space-x-4 custom-scrollbar'>
         {data.artists.map((artist: ArtistProfile) => (
-            <Link href={`/artist/${artist.id}`} key={artist.id} className='min-w-75'>
+            <Link href={`/artist/${artist.id}`} key={artist.id} className='min-w-75 mb-3'>
                 <ArtistPicture artist={artist} size={300} full />
                 <p className='text-center'>{artist.name}</p>
             </Link>

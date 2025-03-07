@@ -67,12 +67,9 @@ export default async function ArtistPage({ params }: { params: Promise<{ artistI
                 </div>
             </div>
 
-            <div className='w-[98%] xl:w-1/2 m-auto h-auto'>
-                <Suspense fallback={<div className='flex justify-center items-center'><LoadingSpinner /></div>}>
-                    <h2 className='text-2xl mb-4'>Top tracks</h2>
-                    <ArtistTopTracks artistId={artistId} />
-                </Suspense>
-            </div>
+            <Suspense fallback={<div className='flex justify-center items-center'><LoadingSpinner /></div>}>
+                <ArtistTopTracks artistId={artistId} />
+            </Suspense>
         </div>
 
         <Suspense fallback={<div className='flex justify-center items-center'><LoadingSpinner /></div>}>
