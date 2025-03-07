@@ -43,7 +43,7 @@ export default async function ArtistPage({ params }: { params: Promise<{ artistI
         return <h1 className='text-red-500 text-center mt-4 text-4xl'>{artistProfile.error.message}</h1>
     }
 
-    return <div className='w-full m-auto p-11'>
+    return <div className='w-full m-auto p-3 sm:p-11'>
         <div className='flex flex-col 2xl:flex-row gap-10 items-start'>
             <div className='w-[98%] m-auto 2xl:w-1/2'>
                 <div className='w-fit m-auto'>

@@ -45,7 +45,7 @@ export default async function AlbumPage({
         return <h1 className='text-red-500 text-center mt-4 text-4xl'>{album.error.message}</h1>
     }
 
-    return <div className='py-11'>
+    return <div className='w-full m-auto p-3 sm:p-11'>
         <div className='w-fit m-auto'>
             <AlbumCover image={album.images[0]} size={400} />
         </div>

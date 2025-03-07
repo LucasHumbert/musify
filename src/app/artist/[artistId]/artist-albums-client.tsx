@@ -21,7 +21,7 @@ export default function ArtistAlbumsClient({ content }: { content: { albums: Alb
 
     return (
         <section className='mt-12'>
-            <div className="flex gap-4 mb-4">
+            <div className="flex flex-col sm:flex-row gap-4 mb-4">
                 {!isLoading && (['albums', 'singles', 'appears_on'] as const).map((category) => {
                     if (content[category].length) {
                         return <button

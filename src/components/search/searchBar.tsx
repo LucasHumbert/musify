@@ -48,7 +48,7 @@ export default function SearchBar() {
     };
 
     return <>
-        <div ref={searchContainerRef} className="relative w-[500px]">
+        <div ref={searchContainerRef} className="relative sm:ml-5 w-full sm:w-[500px]">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                 <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
