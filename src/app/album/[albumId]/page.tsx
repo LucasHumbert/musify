@@ -47,7 +47,7 @@ export default async function AlbumPage({
 
     return <div className='py-11'>
         <div className='w-fit m-auto'>
-            <AlbumCover album={album} size={400} />
+            <AlbumCover image={album.images[0]} size={400} />
         </div>
 
         <div className='w-[95%] m-auto flex flex-col md:flex-row justify-center items-center'>

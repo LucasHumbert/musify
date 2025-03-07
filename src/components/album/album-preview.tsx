@@ -26,7 +26,7 @@ export default function AlbumPreview({
 
     return <div>
         <Link href={`/album/${album.id}`}>
-            <AlbumCover album={album} size={300} full={fullSizeCover} />
+            <AlbumCover image={album.images[0]} size={300} full={fullSizeCover} />
             <p className='w-full truncate' title={album.name}>{ album.name }</p>
             { displayReleaseDate && <p className='w-full truncate' title={releaseDate}>{ releaseYear }</p> }
         </Link>

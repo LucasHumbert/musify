@@ -1,17 +1,17 @@
 import Image from "next/image";
-import {ArtistProfile} from "@/utils/spotify/spotifyTypes";
+import {SpotifyImage} from "@/utils/spotify/spotifyTypes";
 
-export default function ArtistPicture({ artist, size, full }: { artist: ArtistProfile, size: number, full?: boolean }) {
+export default function ArtistPicture({ image, size, full }: { image: SpotifyImage, size: number, full?: boolean }) {
     return <Image
-        src={artist.images[0].url}
+        src={image.url}
         width={size}
         height={size}
-        alt={artist.name}
+        alt='Artist picture'
         priority={true}
         className="rounded-full object-cover"
         style={{
             ...full ? { width: '100%' } : {},
-            aspectRatio: `${artist.images[0].width} / ${artist.images[0].height}`
+            aspectRatio: `${image.width} / ${image.height}`
         }}
     />
 }

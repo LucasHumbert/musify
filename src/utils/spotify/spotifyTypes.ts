@@ -29,7 +29,8 @@ export type Track = {
     explicit: boolean,
     track_number: number,
     external_urls: External_urls,
-    type: string
+    type: string,
+    album: Album
 }
 
 type External_urls = {
@@ -48,7 +49,7 @@ export type ArtistProfile = {
     type: string
 }
 
-type SpotifyImage = {
+export type SpotifyImage = {
     url: string
     width: number,
     height: number

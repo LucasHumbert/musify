@@ -1,12 +1,12 @@
 import Image from "next/image";
-import {Album} from "@/utils/spotify/spotifyTypes";
+import {SpotifyImage} from "@/utils/spotify/spotifyTypes";
 
-export default function AlbumCover({ album, size, full } : { album: Album, size: number, full?: boolean }) {
+export default function AlbumCover({ image, size, full } : { image: SpotifyImage, size: number, full?: boolean }) {
     return <Image
-        src={album.images[0].url}
+        src={image.url}
         width={size}
         height={size}
-        alt={album.name}
+        alt='Album cover'
         priority={true}
         style={full ? { width: '100%' } : {}}
     />

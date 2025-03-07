@@ -47,7 +47,7 @@ export default async function ArtistPage({ params }: { params: Promise<{ artistI
         <div className='flex flex-col 2xl:flex-row gap-10 items-start'>
             <div className='w-[98%] m-auto 2xl:w-1/2'>
                 <div className='w-fit m-auto'>
-                    <ArtistPicture artist={artistProfile} size={400} />
+                    <ArtistPicture image={artistProfile.images[0]} size={400} />
                 </div>
 
                 <div className='text-center'>
