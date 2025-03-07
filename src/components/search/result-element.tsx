@@ -5,7 +5,7 @@ import AlbumCover from "@/components/album/album-cover";
 import ArtistPicture from "@/components/artist/artist-picture";
 import DisplayArtistsNames from "@/components/artist/display-artists-names";
 
-export default function ResultElement({ title, item, onSelect, isClickable = false }: { title: string, item: Album | ArtistProfile | Track, onSelect: () => void, isClickable?: boolean }) {
+export default function ResultElement({ item, onSelect, isClickable = false }: { item: Album | ArtistProfile | Track, onSelect: () => void, isClickable?: boolean }) {
     function isAlbum(item: Album | ArtistProfile | Track): item is Album {
         return item.type === "album";
     }
@@ -22,13 +22,13 @@ export default function ResultElement({ title, item, onSelect, isClickable = fal
     let artists = null;
 
     if (isAlbum(item)) {
-        picture = <AlbumCover image={item.images[0]} size={100} full />
+        picture = item.images.length ? <AlbumCover image={item.images[0]} size={100} full /> : null
         artists = item.artists
     } else if (isTrack(item)) {
-        picture = <AlbumCover image={item.album.images[0]} size={100} full />
+        picture = item.album.images.length ? <AlbumCover image={item.album.images[0]} size={100} full /> : null
         artists = item.artists
     } else if (isArtist(item)) {
-        picture = <ArtistPicture image={item.images[0]} size={100} full />
+        picture = item.images.length ? <ArtistPicture image={item.images[0]} size={100} full /> : null
     }
 
     const content = (
@@ -43,10 +43,7 @@ export default function ResultElement({ title, item, onSelect, isClickable = fal
         </div>
     );
 
-    return (
-        <div>
-            <h2 className="p-2 text-lg underline">{title}</h2>
+    return <>
             {isClickable ? <Link href={`/${item.type}/${item.id}`}>{content}</Link> : content}
-        </div>
-    );
+    </>;
 }

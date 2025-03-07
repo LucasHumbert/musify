@@ -6,7 +6,7 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const q = searchParams.get("q");
 
-    const response = await fetch(`https://api.spotify.com/v1/search?q=${q}&type=album,artist,track&limit=1`, {
+    const response = await fetch(`https://api.spotify.com/v1/search?q=${q}&type=album,artist,track&limit=2`, {
         method: "GET",
         headers: {
             Authorization: 'Bearer ' + token

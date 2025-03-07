@@ -10,15 +10,28 @@ export default function ShowResults({ results, onSelect } : { results: SearchRes
         ) ? (
             <div>
                 {results.artists.items.length > 0 && (
-                   <ResultElement title={'Artist'} item={results.artists.items[0]} onSelect={onSelect} isClickable />
+                    <div>
+                        <h2 className="p-2 text-lg underline">Artist</h2>
+                        <ResultElement item={results.artists.items[0]} onSelect={onSelect} isClickable />
+                    </div>
                 )}
 
                 {results.albums.items.length > 0 && (
-                    <ResultElement title={'Album'} item={results.albums.items[0]} onSelect={onSelect} isClickable />
+                    <div>
+                        <h2 className="p-2 text-lg underline">Albums</h2>
+                        { results.albums.items.map((album) => (
+                            <ResultElement key={album.id} item={album} onSelect={onSelect} isClickable />
+                        ))}
+                    </div>
                 )}
 
                 {results.tracks.items.length > 0 && (
-                    <ResultElement title={'Track'} item={results.tracks.items[0]} onSelect={onSelect} />
+                    <div>
+                        <h2 className="p-2 text-lg underline">Tracks</h2>
+                        { results.tracks.items.map((track) => (
+                            <ResultElement key={track.id} item={track} onSelect={onSelect} />
+                        ))}
+                    </div>
                 )}
             </div>
         ) : (
