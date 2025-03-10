@@ -1,5 +1,6 @@
 export async function fetchSpotifyToken() {
-    if (!process.env.NEXT_RUNTIME || process.env.NEXT_RUNTIME === "nodejs") {
+    console.log("NEXT_RUNTIME:", process.env.NEXT_RUNTIME);
+    if (process.env.NEXT_RUNTIME !== "nodejs") {
         console.log("Fetch du token désactivé pendant le build");
         return "fake_token";
     }
