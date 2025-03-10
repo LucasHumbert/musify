@@ -1,15 +1,16 @@
 export async function fetchSpotifyToken() {
-    // const res = await fetch(`${process.env.SERVER_URL}/api/spotify-token`, {
-    //     next: { revalidate: 3600 },
-    //     cache: 'no-store'
-    // });
-    //
-    // if (!res.ok) {
-    //     throw new Error("Erreur lors de la récupération du token depuis l'API interne");
-    // }
-    //
-    // const data = await res.json();
-    // return data.access_token;
+    const res = await fetch(`${process.env.SERVER_URL}/api/spotify-token`, {
+        next: { revalidate: 3600 },
+        cache: 'no-store'
+    });
 
-    return true;
+    if (!res.ok) {
+        throw new Error("Erreur lors de la récupération du token depuis l'API interne");
+    }
+
+    const data = await res.json();
+
+    console.log('Server URL: ', process.env.SERVER_URL)
+    console.log("Réponse de /api/spotify-token :", data);
+    return data.access_token;
 }
