@@ -1,9 +1,11 @@
 export async function fetchSpotifyToken() {
-    console.log('Server URL: ', process.env.SERVER_URL)
+    if (!process.env.NEXT_RUNTIME || process.env.NEXT_RUNTIME === "nodejs") {
+        console.log("Fetch du token désactivé pendant le build");
+        return "fake_token";
+    }
 
     const res = await fetch(`${process.env.SERVER_URL}/api/spotify-token`, {
-        next: { revalidate: 3600 },
-        cache: 'no-store'
+        next: { revalidate: 3600 }
     });
     if (!res.ok) {
         throw new Error("Erreur lors de la récupération du token depuis l'API interne");
@@ -11,6 +13,5 @@ export async function fetchSpotifyToken() {
     }
 
     const data = await res.json();
-    console.log("Réponse de /api/spotify-token :", data);
     return data.access_token;
 }
