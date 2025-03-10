@@ -1,6 +1,7 @@
 export async function fetchSpotifyToken() {
     const res = await fetch(`${process.env.SERVER_URL}/api/spotify-token`, {
         next: { revalidate: 3600 },
+        cache: 'no-store'
     });
 
     if (!res.ok) {
