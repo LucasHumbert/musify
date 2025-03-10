@@ -10,10 +10,10 @@ export default function AlbumTrack({ track, trackNumber }: { track: Track, track
             {trackNumber ?? track.track_number}
         </div>
         <div className='grow'>
-            <div className='flex items-center'>
-                <p>{track.name}</p>
-                { track.explicit && <div className='text-sm bg-gray-300 w-fit h-fit ml-1 px-1 rounded-sm' title='Explicit'>E</div> }
-            </div>
+            <p>
+                {track.name}
+                { track.explicit && <span className='text-sm bg-gray-300 w-fit h-fit ml-1 px-1 rounded-sm' title='Explicit'>E</span> }
+            </p>
             <div className='flex w-full truncate flex-wrap'>
                 <DisplayArtistsNames artists={track.artists} />
             </div>
