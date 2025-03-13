@@ -1,11 +1,12 @@
-export async function fetchSpotifyToken() {
-    console.log("NEXT_RUNTIME:", process.env.NEXT_RUNTIME);
-    if (process.env.NEXT_RUNTIME !== "nodejs") {
-        console.log("Fetch du token désactivé pendant le build");
-        return "fake_token";
-    }
+import { headers } from "next/headers";
 
-    const res = await fetch(`${process.env.SERVER_URL}/api/spotify-token`, {
+export async function fetchSpotifyToken() {
+    const headersList = await headers();
+    const host = headersList.get("host");
+    const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
+    const baseUrl = `${protocol}://${host}`;
+
+    const res = await fetch(`${baseUrl}/api/spotify-token`, {
         next: { revalidate: 3600 }
     });
     if (!res.ok) {
