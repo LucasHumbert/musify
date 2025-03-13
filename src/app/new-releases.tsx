@@ -5,7 +5,7 @@ import AlbumPreview from "@/components/album/album-preview";
 export default async function NewReleases() {
     const token = await fetchSpotifyToken();
 
-    const res = await fetch('https://api.spotify.com/v1/browse/new-releases', {
+    const res = await fetch('https://api.spotify.com/v1/browse/new-releases?market=FR', {
         headers: {
             Authorization: 'Bearer ' + token
         },
